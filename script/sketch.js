@@ -19,7 +19,7 @@ function setup() {
 
   noStroke();
   //---
-  setCanvasContainer('canvas', 1, 1, true);
+  setCanvasContainer('canvas', 1.2, 1, true);
   for (let i = 0; i < num; i++) {
     particles.push(createVector(random(width), random(height)));
   }
