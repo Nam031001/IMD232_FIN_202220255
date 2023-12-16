@@ -9,8 +9,6 @@ const noiseScale = 0.01 / 2;
 function setup() {
   createCanvas(800, 800);
 
-  //w : h = cam w : cam h
-  // => (w * camH) / camW = h
   capture = createCapture(VIDEO);
   capture.hide();
   //   비디오를 만들어서 화면상에서 숨기기
@@ -32,6 +30,9 @@ function setup() {
       location.reload();
     }
   });
+
+  window.addEventListener('resize', windowResized);
+  noStroke();
 }
 
 function draw() {
@@ -101,15 +102,6 @@ function mouseReleased() {
   document.addEventListener('click', playAudio);
 }
 
-// function playSound(audioName) {
-//   let audio = new Audio(audioName);
-//   audio.play();
-// }
-// playSound('../finals/sound/FX_piano01.mp3');
-
-// document.addEventListener('click', playSound);
-
-// 벡터 v가 화면 안에 있는지 여부를 반환하는 함수
 function onScreen(v) {
   return v.x >= 0 && v.x <= width && v.y >= 0 && v.y <= height;
 }
