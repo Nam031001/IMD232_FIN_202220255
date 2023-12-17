@@ -12,7 +12,6 @@ function setup() {
   capture.hide();
 
   noStroke();
-
   for (let i = 0; i < num; i++) {
     particles.push({
       position: createVector(random(width), random(height)),
@@ -20,8 +19,6 @@ function setup() {
     });
   }
 
-  stroke(255);
-  clear();
   // a키를 눌렀을 때 새로고침, addEventListener => 특정이벤트가 발생되었을 때  특정 함수 실행
   document.addEventListener('keydown', function (event) {
     if (event.key === 'a') {
@@ -30,7 +27,6 @@ function setup() {
   });
 
   window.addEventListener('resize', windowResized);
-  noStroke();
 }
 
 function draw() {
@@ -60,7 +56,7 @@ function draw() {
     //mouseY를 0부터 canvas 높이까지의 범위에서 => 0.5부터 3까지의 범위로 매핑
     let cursorThickness = map(mouseY, 0, height, 1, 6);
     fill(p.color); // 파티클의 색상을 적용
-    ellipse(p.position.x, p.position.y, cursorThickness, cursorThickness);
+    ellipse(p.position.x, p.position.y, cursorThickness);
 
     // 이동을 위한 노이즈 계산
     let n = noise(
