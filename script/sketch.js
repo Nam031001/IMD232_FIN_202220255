@@ -7,7 +7,7 @@ let particles = [];
 
 function setup() {
   background(0, 10);
-  setCanvasContainer('canvas', 1.2, 1, true);
+  setCanvasContainer('canvas', 1, 1, true);
   capture = createCapture(VIDEO);
   capture.hide();
 
