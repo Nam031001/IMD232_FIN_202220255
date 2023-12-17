@@ -1,10 +1,9 @@
+const num = 3000;
+const noiseScale = 0.01 / 2;
 let capture;
-const tileSize = 10;
 
 let particles = [];
-const num = 3000;
 // 랜덤 변화값
-const noiseScale = 0.01 / 2;
 
 function setup() {
   background(0, 10);
@@ -13,7 +12,7 @@ function setup() {
   capture.hide();
 
   noStroke();
-  //---
+
   for (let i = 0; i < num; i++) {
     particles.push({
       position: createVector(random(width), random(height)),
@@ -35,15 +34,8 @@ function setup() {
 }
 
 function draw() {
+  background(0, 10);
   capture.loadPixels();
-  // const capX = floor(map(random(width), 0, width, 0, capture.width));
-  // const capY = floor(map(random(height), 0, height, 0, capture.height));
-  // const idx = (capture.width * capY + capX) * 4;
-
-  // const rIdx = idx;
-  // const gIdx = idx + 1;
-  // const bIdx = idx + 2;
-
   // 각 파티클의 색상을 설정
   particles.forEach((p) => {
     if (!p.initialized) {
@@ -61,10 +53,6 @@ function draw() {
       p.initialized = true;
     }
   });
-
-  //   capture.width - x => 비디오 좌우반전
-
-  background(0, 10);
 
   // 파티클 렌더링
   for (let i = 0; i < num; i++) {
