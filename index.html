@@ -19,6 +19,8 @@
     <script>
       function playAudio() {
         const audio = document.getElementById('myAudio');
+        // audio.pause();
+        audio.currentTime = 0;
         audio.play();
       }
     </script>
