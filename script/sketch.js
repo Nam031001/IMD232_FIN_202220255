@@ -62,12 +62,15 @@ function draw() {
     let n = noise(
       p.position.x * noiseScale,
       p.position.y * noiseScale,
+      // 화면에 나타난 프레임의 개수 = frameCount
+      // 시간이 변할 떄마다 노이즈가 변하도록 한다.
       frameCount * noiseScale * noiseScale
     );
-
+    //계산 후 n => 0에서 1사이의 값
+    //에 TAU(360도)를 곱해서 각도 a로 삼는다.
     let a = TAU * n;
 
-    // 파티클 이동
+    // 해당 각도만큼 파티클 이동
     p.position.x += cos(a);
     p.position.y += sin(a);
 
@@ -81,6 +84,7 @@ function draw() {
 }
 
 function mouseReleased() {
+  //mils = 1000분의 1
   noiseSeed(millis());
   document.addEventListener('click', playAudio);
 }
