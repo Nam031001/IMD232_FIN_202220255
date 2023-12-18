@@ -84,7 +84,7 @@ function draw() {
 }
 
 function mouseReleased() {
-  //mils = 1000분의 1
+  //millis = 1000분의 1
   noiseSeed(millis());
   document.addEventListener('click', playAudio);
 }
