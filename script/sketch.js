@@ -1,9 +1,12 @@
+// https://openprocessing.org/sketch/813503
+//에서 영감을 받아 진행했습니다.
+
 const num = 3000;
+// 랜덤 변화값
 const noiseScale = 0.01 / 2;
 let capture;
 
 let particles = [];
-// 랜덤 변화값
 
 function setup() {
   background(0, 10);
