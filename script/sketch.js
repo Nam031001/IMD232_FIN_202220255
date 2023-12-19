@@ -6,23 +6,28 @@
 // 마우스 윗쪽 - 파티클 크기 줄어듬
 // 마우스 아래쪽 - 파티클 크기 늘어남
 // 카메라 상에 비례한 색상을 파티클에 반영한다
-// =노트북 카메라를 켜두고 색상을 비춰보면 위치에 따른 색 차이가 더 잘 보입니다.
+// = 노트북 카메라를 켜두고 색상을 비춰보면 위치에 따른 색 차이가 더 잘 보입니다.
 
+//입자
 const num = 3000;
 // 랜덤 변화값
 const noiseScale = 0.01 / 2;
+//카메라
 let capture;
 
+//파티클 선언
 let particles = [];
 
 function setup() {
   background(0, 10);
   setCanvasContainer('canvas', 1, 1, true);
+  //비디오 만들고 감추기
   capture = createCapture(VIDEO);
   capture.hide();
 
   noStroke();
   for (let i = 0; i < num; i++) {
+    //파티클에 위치와 컬러값을 푸시
     particles.push({
       position: createVector(random(width), random(height)),
       color: color,
@@ -35,16 +40,18 @@ function setup() {
       location.reload();
     }
   });
-
+  //화면크기 변화 시 사이즈 재조정
   window.addEventListener('resize', windowResized);
 }
 
 function draw() {
   background(0, 10);
   capture.loadPixels();
-  // 각 파티클의 색상을 설정
+  // forEach를 이용해 각 파티클의 색상을 설정
   particles.forEach((p) => {
+    //파티클의 색상이 계속 바뀌는 이슈 => initialized라는 조건을 추가해 해결
     if (!p.initialized) {
+      //카메라와 파티클 캔버스 비율 조정, idx화, 색상설정
       const capX = floor(map(p.position.x, 0, -width, 0, capture.width));
       const capY = floor(map(p.position.y, 0, height, 0, capture.height));
       const capIdx = 4 * (capY * capture.width + capX);
@@ -65,7 +72,7 @@ function draw() {
     let p = particles[i];
     //mouseY를 0부터 canvas 높이까지의 범위에서 => 0.5부터 3까지의 범위로 매핑
     let cursorThickness = map(mouseY, 0, height, 1, 6);
-    fill(p.color); // 파티클의 색상을 적용
+    fill(p.color); // 파티클 색상 적용
     ellipse(p.position.x, p.position.y, cursorThickness);
 
     // 이동을 위한 노이즈 계산
@@ -88,17 +95,19 @@ function draw() {
     if (!onScreen(p.position)) {
       p.position.x = random(width);
       p.position.y = random(height);
-      p.initialized = false; // 초기화 플래그 리셋
+      p.initialized = false;
     }
   }
 }
 
+//마우스 눌렀을때(엄밀하게는 놨을 때) 효과
 function mouseReleased() {
   //millis = 1000분의 1
   noiseSeed(millis());
   document.addEventListener('click', playAudio);
 }
 
+// 벡터가 화면 내 존재 여부를 반환
 function onScreen(v) {
   return v.x >= 0 && v.x <= width && v.y >= 0 && v.y <= height;
 }
