@@ -1,5 +1,7 @@
 // https://openprocessing.org/sketch/813503
 //에서 영감을 받아 진행했습니다.
+//https://www.youtube.com/watch?v=sZBfLgfsvSk&list=LL&index=14
+//해당 영상의 작동 시퀀스를 이용
 // 기능 =>
 // 좌클릭 - 진행방향 전환, 사운드
 // 영타 a - 새로고침
@@ -9,9 +11,9 @@
 // = 노트북 카메라를 켜두고 색상을 비춰보면 위치에 따른 색 차이가 더 잘 보입니다.
 
 //입자
-const num = 3000;
+const num = 5000;
 // 랜덤 변화값
-const noiseScale = 0.01 / 2;
+const noiseScale = 0.01 / 1.5;
 //카메라
 let capture;
 
